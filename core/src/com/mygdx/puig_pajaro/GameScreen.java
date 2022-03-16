@@ -153,16 +153,18 @@ public class GameScreen implements Screen {
                 }
             }
 
-            if(!si){
-                if ((int) score % 10 == 0 && score > 1) {
+            if (!si) {
+                int rat = (int) (score + 1);
+                if (rat % 10 == 0 && score > 1) {
+
                     for (int i = 0; i < 5; i++) {
                         //if (spawn - lastBoss > 30)
                         spawnBoss(i);
                     }
                     si = true;
+
                 }
             }
-
 
 
             Iterator<Rectangle> iter = obstacles.iterator();
@@ -192,13 +194,13 @@ public class GameScreen implements Screen {
                 }
 
                 if (manco.tiempoCambio > 0) {
-                    manco.tiempoCambio-=Gdx.graphics.getDeltaTime();
-                    if(manco.direccion)
-                        manco.cuerpo.y -= 100 * Gdx.graphics.getDeltaTime();
+                    manco.tiempoCambio -= Gdx.graphics.getDeltaTime();
+                    if (manco.direccion)
+                        manco.cuerpo.y -= 300 * Gdx.graphics.getDeltaTime();
                     else
-                        manco.cuerpo.y += 100 * Gdx.graphics.getDeltaTime();
+                        manco.cuerpo.y += 300 * Gdx.graphics.getDeltaTime();
                 } else {
-                    manco.tiempoCambio = (int) (Math.random()*60)+20;
+                    manco.tiempoCambio = (int) (Math.random() * 60) + 20;
                     manco.direccion = !manco.direccion;
                 }
 
@@ -285,7 +287,7 @@ public class GameScreen implements Screen {
     private void spawnBoss(int i) {
 
         enemigo pipe1 = new enemigo();
-        pipe1.cuerpo.x = 800 + (150*i);
+        pipe1.cuerpo.x = 900 + (150 * i);
         pipe1.cuerpo.y = 480 / 2 - 64 / 2;
         pipe1.cuerpo.width = 64;
         pipe1.cuerpo.height = 45;
