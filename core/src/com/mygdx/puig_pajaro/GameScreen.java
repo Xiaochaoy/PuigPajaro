@@ -51,7 +51,7 @@ public class GameScreen implements Screen {
         si = false;
         pausar = false;
         direccion = false;
-        bobo = 0;
+        bobo = 100;
         pausa2 = new Texture(Gdx.files.internal("pausa.png"));
         backgroundImage = new Texture(Gdx.files.internal("background.png"));
         flapSound = Gdx.audio.newSound(Gdx.files.internal("flap.wav"));
@@ -146,16 +146,14 @@ public class GameScreen implements Screen {
 
 
             if (!si) {
-                if (score > 20) {
-                    if (spawn - lastObstacleTime > 50) spawnObstacle();
-                } else {
-                    if (spawn - lastObstacleTime > 100) spawnObstacle();
-                }
+
+                if (spawn - lastObstacleTime > bobo) spawnObstacle();
+
             }
 
             if (!si) {
                 int rat = (int) (score + 1);
-                if (rat % 10 == 0 && score > 1) {
+                if (rat % 20 == 0 && score > 1) {
 
                     for (int i = 0; i < 5; i++) {
                         //if (spawn - lastBoss > 30)
@@ -190,6 +188,9 @@ public class GameScreen implements Screen {
                     iter2.remove();
                     if (!iter2.hasNext()) {
                         si = false;
+                        if (bobo > 40){
+                            bobo -= 20;
+                        }
                     }
                 }
 
